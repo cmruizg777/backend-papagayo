@@ -28,6 +28,21 @@ let getClientes = async ()=>{
   const clientes = await Cliente.findAll();
   return clientes;
 }
+let borrarCliente = async (cedula)=>{
+  return await Cliente.destroy({
+    where: {
+      cedula: cedula
+    }
+  })
+}
+let actualizarCliente = async (cedula, cliente)=>{
+  return await Cliente.update(cliente, {where : { cedula: cedula}})
+}
+
+let buscar = async(cedula)=>{
+  const cliente = await Cliente.findByPk('1003659966');
+  return cliente;
+}
 (async () => {
   
 
@@ -41,21 +56,6 @@ let getClientes = async ()=>{
     nHijos: 1
   });
 
-  /*jane = await Cliente.update({
-    nombre: 'Cristian Manuel'
-  }, {where : { cedula: '1003659966'}});
-
-  await Cliente.destroy({
-    where: {
-      cedula: '1003659966'
-    }
-  });*/
-
-  //const clientes = await Cliente.findAll();
-
-  //console.log(clientes.toJSON())
-
-  //const cliente = await Cliente.findByPk('1003659966');
 
   //console.log(cliente.toJSON());
 
@@ -63,5 +63,8 @@ let getClientes = async ()=>{
 
 module.exports = {
   nuevoCliente,
-  getClientes
+  getClientes,
+  borrarCliente,
+  actualizarCliente,
+  buscar
 }
