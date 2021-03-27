@@ -40,7 +40,7 @@ let actualizarCliente = async (cedula, cliente)=>{
 }
 
 let buscar = async(cedula)=>{
-  const cliente = await Cliente.findByPk('1003659966');
+  const cliente = await Cliente.findByPk(cedula);
   return cliente;
 }
 (async () => {
